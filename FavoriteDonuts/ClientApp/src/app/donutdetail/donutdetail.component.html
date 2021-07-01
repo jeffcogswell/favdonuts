@@ -1,0 +1,13 @@
+<ng-container *ngIf="detail != null">
+    <h2>Donut Detail</h2>
+
+    <ng-container *ngIf="donutService.username != null">
+        <button (click)="addFavorite()">Add Favorite</button>&nbsp;
+        <button (click)="removeFavorite()">Remove Favorite</button>&nbsp;
+        {{ isFavorite }}
+    </ng-container>
+
+    {{ detail.name }}
+    <br />
+    <img src="{{ detail.photo }}" />
+</ng-container>

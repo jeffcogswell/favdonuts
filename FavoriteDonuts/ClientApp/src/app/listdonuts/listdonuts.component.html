@@ -1,0 +1,7 @@
+<h1>Here are our Donuts</h1>
+
+<div *ngFor="let donut of donuts">
+    {{ donut.name }} <button (click)="showDetail(donut.id)">Detail</button>
+</div>
+
+<app-donutdetail #MyDonutDetail></app-donutdetail>
