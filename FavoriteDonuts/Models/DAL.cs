@@ -61,8 +61,17 @@ namespace FavoriteDonuts.Models
 			db.Delete(fav);
 		}
 
+		public static void RemoveUserFavorite(string username, int donut)
+		{
+			db.Query("delete from favorite where username = @uname and donut = @did",
+				new { uname = username, did = donut });
+		}
+
 		public static bool IsFavorite(string username, int donut)
 		{
+
+			//$"select * from favorite where username = '{username}' and donut = {donut}"
+			// "select * from favorite where username = 'fred' and donut = 10"
 			List<Favorite> results = db.Query<Favorite>(
 				"select * from favorite where username = @uname and donut = @did",
 				new { uname = username, did = donut }

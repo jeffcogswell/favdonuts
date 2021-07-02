@@ -24,6 +24,18 @@
                         <a class="nav-link text-dark" [routerLink]="['/list']">All Donuts</a>
                     </li>
 
+                    <ng-container *ngIf="this.donutService?.username">
+
+                        <li class="nav-item" [routerLinkActive]="['link-active']">
+                            <a class="nav-link text-dark" [routerLink]="['/favs']">{{ this.donutService.username }}'s Favorites</a>
+                        </li>
+
+                        <li class="nav-item" [routerLinkActive]="['link-active']">
+                            <span style="cursor:pointer" class="nav-link text-dark" (click)="logout()">Logout</span>
+                        </li>
+
+                    </ng-container>
+
 
                 </ul>
             </div>

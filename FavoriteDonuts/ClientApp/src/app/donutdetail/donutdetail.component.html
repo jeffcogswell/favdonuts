@@ -2,9 +2,7 @@
     <h2>Donut Detail</h2>
 
     <ng-container *ngIf="donutService.username != null">
-        <button (click)="addFavorite()">Add Favorite</button>&nbsp;
-        <button (click)="removeFavorite()">Remove Favorite</button>&nbsp;
-        {{ isFavorite }}
+        <input type="checkbox" [(ngModel)]="isFavorite" (change)="changeCheckbox()" /> Favorite
     </ng-container>
 
     {{ detail.name }}

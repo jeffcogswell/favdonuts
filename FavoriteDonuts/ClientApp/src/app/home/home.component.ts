@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router'; // ADD THIS
 import { DonutapiService } from '../donutapi.service';
 
 @Component({
@@ -7,10 +8,16 @@ import { DonutapiService } from '../donutapi.service';
 })
 export class HomeComponent {
 
-	donutService: DonutapiService = null;
-	constructor(theDService: DonutapiService) {
-		this.donutService = theDService;
-	}
+	// We did this the LONG way.
+	//donutService: DonutapiService = null;
+	//constructor(theDService: DonutapiService) {
+	//	this.donutService = theDService;
+	//}
+	// Let's do it the SHORT way
+	constructor(
+		private donutService: DonutapiService,
+		private route: Router
+	) { }
 
 	// Start with a list of variables
 	// that map to the individual controls
@@ -24,6 +31,6 @@ export class HomeComponent {
 	// This function runs when we click the button
 	clickLogin() {
 		this.donutService.username = this.username;
-		alert(this.username);
+		this.route.navigateByUrl('/list');
 	}
 }

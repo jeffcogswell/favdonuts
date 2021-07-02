@@ -54,7 +54,14 @@ namespace FavoriteDonuts.Controllers
 			return true;
 		}
 
-		[HttpGet("isfav")]
+		[HttpDelete("remove/{username}/{donut}")]
+		public bool RemoveUserFavorite(string username, int donut)
+		{
+			DAL.RemoveUserFavorite(username, donut);
+			return true;
+		}
+
+		[HttpGet("isfav/{username}/{donut}")]
 		public bool IsFavorite(string username, int donut)
 		{
 			return DAL.IsFavorite(username, donut);

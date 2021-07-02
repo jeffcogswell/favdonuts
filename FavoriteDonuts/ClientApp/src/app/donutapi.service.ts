@@ -5,10 +5,15 @@ import { Injectable } from '@angular/core';
 export class DonutapiService {
 	username: string = null;
 
-	http: HttpClient = null;
-    constructor(theHttp: HttpClient) {
-		this.http = theHttp;
-    }
+	// Here's the LONG way:
+	//http: HttpClient = null;
+    //constructor(theHttp: HttpClient) {
+	//	this.http = theHttp;
+    //}
+	// Here's the preferred, SHORT way:
+	constructor(private http: HttpClient) {
+	}
+
 
 	// PRACTICE the callback concept
 	getAllDonuts(cb) {
@@ -35,11 +40,15 @@ export class DonutapiService {
 		})
 	}
 
-	removeFavorite(id) {
-
+	removeFavorite(donutid) {
+		this.http.delete<any>(`/favorite/remove/${this.username}/${donutid}`, {}).subscribe(results => {
+			console.log(results);
+		})
 	}
 
-	isFavorite(username, id, cb) {
-
+	isFavorite(donutid, cb) {
+		this.http.get<any>(`/favorite/isfav/${this.username}/${donutid}`).subscribe(results => {
+			cb(results);
+		});
 	}
 }
