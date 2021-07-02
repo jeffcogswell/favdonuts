@@ -13,6 +13,7 @@ namespace FavoriteDonuts.Models
 		public int id { get; set; }
 		public string username { get; set; }
 		public int donut { get; set; }
+		public string donutname { get; set; }
 	}
 
 }

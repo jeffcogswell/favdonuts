@@ -26,9 +26,9 @@ namespace FavoriteDonuts.Controllers
 		//       /favorite/add/jeffcogs/5
 		//       /favorite/add/jeffcogs&donut=5 <-- mixing parameter types, probably not best
 		[HttpPost("add")]
-		public bool AddUserFavorite(string username, int donut)
+		public bool AddUserFavorite(string username, int donut, string donutname)
 		{
-			DAL.AddUserFavorite(username, donut);
+			DAL.AddUserFavorite(username, donut, donutname);
 			return true;
 		}
 

@@ -18,8 +18,9 @@ export class DonutdetailComponent {
 
 	addFavorite() {
 		console.log('Adding Favorite');
+		console.log(this.detail);
 		console.log(this.detail.id);
-		this.donutService.addFavorite(this.detail.id);
+		this.donutService.addFavorite(this.detail.id, this.detail.name);
 	}
 
 	removeFavorite() {

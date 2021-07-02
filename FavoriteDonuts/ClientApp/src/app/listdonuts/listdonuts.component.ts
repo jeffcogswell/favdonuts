@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { DonutapiService } from '../donutapi.service';
 import { DonutdetailComponent } from '../donutdetail/donutdetail.component';
 
@@ -14,32 +15,31 @@ export class ListdonutsComponent {
 	@ViewChild('MyDonutDetail', { static: false }) detailComp: DonutdetailComponent = null;
 
 	/** listdonuts ctor */
-	constructor(private donutService: DonutapiService) {
-		this.donutService.getAllDonuts(donuts => {
+	constructor(
+		private donutService: DonutapiService,
+		private thisroute: ActivatedRoute
+	) { }
 
-			// The list we get back looks like this:
-			/*
-			 *  {
-					"count": 2,
-					"results": [
-						{
-							"id": 1,
-							"ref": "https://grandcircusco.github.io/demo-apis/donuts/1.json",
-							"name": "Glazed"
-						},
-						{
-							"id": 2,
-							"ref": "https://grandcircusco.github.io/demo-apis/donuts/2.json",
-							"name": "Chocolate Glazed"
-						}
-					]
-				}
-			 */
-			// we don't need the whole object we got back. All we really need
-			// is the "results" member, which contains the actual list of donuts
-			this.donuts = donuts.results;
-			console.log(this.donuts);
+	ngOnInit() {
+
+		this.thisroute.paramMap.subscribe(params => {
+			console.log(params.get('listtype'));
+			if (params.get('listtype') == 'favs') {
+				this.donutService.getFavsByUser(donuts => {
+					this.donuts = donuts.map(item => {
+						return { id: item.donut, ref: '', name: item.donutname };
+					})
+					console.log(this.donuts);
+				})
+			}
+			else {
+				this.donutService.getAllDonuts(donuts => {
+					this.donuts = donuts.results;
+					console.log(this.donuts);
+				});
+			}
 		});
+
 	}
 
 	showDetail(id) {

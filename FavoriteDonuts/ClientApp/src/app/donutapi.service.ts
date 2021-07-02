@@ -27,23 +27,29 @@ export class DonutapiService {
 
 	}
 
+	getFavsByUser(cb) {
+		this.http.get<any>(`/favorite/getfavs/${this.username}`).subscribe(donuts => {
+			cb(donuts);
+		});
+	}
+
 	getDonutDetail(id, cb) {
 		this.http.get<any>(`/donut/${id}`).subscribe(detail => {
 			cb(detail);
 		});
 	}
 
-	addFavorite(id) {
-		this.http.post<any>(`/favorite/add?username=${this.username}&donut=${id}`, {}).subscribe(results => {
-		//this.http.post<any>(`/favorite/add`, {username: this.username, donut: id}).subscribe(results => {
+	addFavorite(id, donutname) {
+		this.http.post<any>(`/favorite/add?username=${this.username}&donut=${id}&donutname=${donutname}`, {}).subscribe(results => {
+			//this.http.post<any>(`/favorite/add`, {username: this.username, donut: id}).subscribe(results => {
 			console.log(results);
-		})
+		});
 	}
 
 	removeFavorite(donutid) {
 		this.http.delete<any>(`/favorite/remove/${this.username}/${donutid}`, {}).subscribe(results => {
 			console.log(results);
-		})
+		});
 	}
 
 	isFavorite(donutid, cb) {

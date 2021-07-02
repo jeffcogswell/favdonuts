@@ -15,7 +15,7 @@ namespace FavoriteDonuts.Models
 
 		// AddUserFavorite("jeffcogs","jellydonut");
 		// AddUserFavorite("jeffcogs","jellydonut");
-		public static Favorite AddUserFavorite(string newUsername, int newDonut)
+		public static Favorite AddUserFavorite(string newUsername, int newDonut, string newDonutName)
 		{
 			// Make sure the favorite doesn't already exist for the user
 			// Technically we should be careful and only call this function when
@@ -24,7 +24,7 @@ namespace FavoriteDonuts.Models
 			// Make sure the donut they add actually exists: Call the Donut API
 			// Technically we should do that. If this were a production app that
 			// we have two months to build, we would want to cover all our bases.
-			Favorite fav = new Favorite() { username = newUsername, donut = newDonut };
+			Favorite fav = new Favorite() { username = newUsername, donut = newDonut, donutname = newDonutName };
 			db.Insert(fav);
 			return fav;
 		}

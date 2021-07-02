@@ -25,7 +25,8 @@ import { DonutdetailComponent } from './donutdetail/donutdetail.component';
 		FormsModule,
 		RouterModule.forRoot([
 			{ path: '', component: HomeComponent, pathMatch: 'full' },
-			{ path: 'list', component: ListdonutsComponent }
+			{ path: 'list', component: ListdonutsComponent },
+			{ path: 'list/:listtype', component: ListdonutsComponent}
 		])
 	],
 	providers: [DonutapiService],
