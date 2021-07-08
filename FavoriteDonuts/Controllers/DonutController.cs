@@ -38,5 +38,11 @@ namespace FavoriteDonuts.Controllers
 			return json;
 		}
 
+		[HttpGet("test")]
+		public string test()
+		{
+			return "Hello";
+		}
+
 	}
 }
